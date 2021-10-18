@@ -1,5 +1,5 @@
 {
-  "name": "@schematics/ngx-devtools",
+  "name": "@ng-vim/devtools",
   "version": "1.0.0",
   "description": "A schematics to integrate husky with prettier and commitlint in your angular workspace",
   "license": "MIT",
