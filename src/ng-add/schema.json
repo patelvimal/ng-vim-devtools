@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/schema",
-    "$id": "@schematics/vim-template-ngx--ng-add",
+    "$id": "@ng-vim/devtools-ng-add",
     "title": "Ngx Builder ng-add schematic",
     "type": "object",
     "properties": {
