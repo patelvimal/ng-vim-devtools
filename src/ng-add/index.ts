@@ -33,6 +33,7 @@ function updatePackageCommands(options: Options): Rule {
         const pkg: any = JSON.parse(buffer.toString());
 
         pkg.scripts['format'] = 'pretty-quick --staged';
+        pkg.scripts['pre-commit'] = 'npm run format';
         pkg.scripts['prepare'] = 'husky install';
 
         if (options.includeAngularCommands) {
