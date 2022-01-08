@@ -10,5 +10,4 @@ export interface Workspace {
 
 export interface Options {
     integrateCommitlint: boolean;
-    includeAngularCommands: boolean;
 }

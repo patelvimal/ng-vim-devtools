@@ -16,12 +16,12 @@ export default function (options: Options): Rule {
             addPackageJsonDependencies(),
             installDependencies(),
             addTemplateFiles(options),
-            updatePackageCommands(options)
+            updatePackageCommands()
         ])(tree, _context);
     };
 }
 
-function updatePackageCommands(options: Options): Rule {
+function updatePackageCommands(): Rule {
     return (tree: Tree, _context: SchematicContext) => {
         const packagePath: string = './package.json';
         const buffer = tree.read(packagePath);
@@ -32,14 +32,10 @@ function updatePackageCommands(options: Options): Rule {
 
         const pkg: any = JSON.parse(buffer.toString());
 
-        pkg.scripts['format'] = 'pretty-quick --staged';
-        pkg.scripts['pre-commit'] = 'npm run format';
+        pkg.scripts['prettier'] = 'pretty-quick --staged';
+        pkg.scripts['pre-commit'] = 'npm run prettier';
+        pkg.scripts['pre-push'] = '';
         pkg.scripts['prepare'] = 'husky install';
-
-        if (options.includeAngularCommands) {
-            pkg.scripts['test-ci'] =
-                'ng test -- --no-watch --no-progress --browsers=ChromeHeadless';
-        }
 
         tree.overwrite(packagePath, JSON.stringify(pkg, null, 2));
     };
